@@ -45,7 +45,7 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   
-  const ownerNumber = ['923146190772']
+  const ownerNumber = ['923253617422']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -142,7 +142,7 @@ const port = process.env.PORT || 3000;
 
 ╭──〔 🔗 *Quick Access Panel* 〕  
 ├─ 📢 *Channel:*  
-│   https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O  
+│   https://whatsapp.com/channel/0029VajGHyh2phHOH5zJl73P  
 ├─ ⭐ *GitHub:*  
 │   https://github.com/Bandah-E-Ali/Edith-MD
 ╰─🛠️ *Prefix:* \`${prefix}\`
