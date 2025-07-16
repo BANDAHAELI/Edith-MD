@@ -1,4 +1,4 @@
-const { cmd } = require('../command');
+const { Stark } = require('../command');
 const crypto = require('crypto');
 const webp = require('node-webpmux');
 const axios = require('axios');
@@ -6,10 +6,10 @@ const fs = require('fs-extra');
 const { exec } = require('child_process');
 const { Sticker, createSticker, StickerTypes } = require("wa-sticker-formatter");
 const Config = require('../config');
-
+const data = require('../lib/data.js');
 // Take Sticker 
 
-cmd(
+Stark(
     {
         pattern: 'take',
         alias: ['rename', 'stake'],
@@ -45,7 +45,7 @@ cmd(
 
 //Sticker create 
 
-cmd(
+Stark(
     {
         pattern: 'sticker',
         alias: ['s', 'stickergif'],
@@ -77,4 +77,4 @@ cmd(
     }
 );
 
-// JawadTechX
+// Bandaheali
