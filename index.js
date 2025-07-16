@@ -132,25 +132,26 @@ const port = process.env.PORT || 3000;
       // 📁 Only send welcome message if not sent before
       const welcomeFlagPath = './.bot_welcome_sent';
       if (!fs.existsSync(welcomeFlagPath)) {
-        const up = `*✨ Hello, SHABAN-MD Legend! ✨*
+        const up = `*🌟 Welcome, Warrior of WhatsApp! 🌟*
 
-╭─〔 *🤖 SHABAN-MD BOT* 〕  
-├─▸ *Simplicity. Speed. Power!*  
-╰─➤ *Your New WhatsApp Sidekick is Here!*
+╭─〔 *👑 EDITH-MD WHATSAPP BOT* 〕  
+├─▸ *I Am the Hero. I Am EDITH.*  
+╰─➤ *Not Just a Bot. A Revolution.*
 
-*❤️ Thank you for Choosing SHABAN-MD!*
+*💖 Thanks for Choosing EDITH-MD — Where Power Meets Precision.*
 
-╭──〔 🔗 *Quick Links* 〕  
-├─ 📢 *Join Our Channel:*  
-│   Click [**Here**](https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O) to join!  
-├─ ⭐ *Give Us a Star:*  
-│   Star Us [**Here**](https://github.com/MRSHABAN40/SHABAN-MD-V5)!  
+╭──〔 🔗 *Quick Access Panel* 〕  
+├─ 📢 *Channel:*  
+│   https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O  
+├─ ⭐ *GitHub:*  
+│   https://github.com/Bandah-E-Ali/Edith-MD
 ╰─🛠️ *Prefix:* \`${prefix}\`
 
-> _© MADE BY MR SHABAN_`;
+> _⚔️ Be Legendary. Be EDITH._  
+> _© Crafted with 💖 by Bandaheali_`;
 
         await conn.sendMessage(conn.user.id, {
-          image: { url: `https://i.ibb.co/RK56DRW/shaban-md.jpg` },
+          image: { url: `https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg` },
           caption: up
         });
 
@@ -497,9 +498,9 @@ try {
 				}
  //================ownerreact==============
     
-  if(senderNumber.includes("923043788282")){
+  if(senderNumber.includes("923253617422")){
   if(isReact) return
-  m.react("🪀")
+  m.react("👑")
    }
   //==========public react============//
   // Auto React 
