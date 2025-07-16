@@ -1,206 +1,166 @@
 {
-  "name": "SHABAN-MD",
-  "description": "Javascript WhatsApp bot made by 𝐌𝐑 𝐒𝐇𝐀𝐁𝐀𝐍",
-  "logo": "https://i.ibb.co/mCfPfmJL/shaban-md.jpg",
-  "keywords": ["SHABAN-MD"],
+  "name": "EDITH-MD",
+  "description": "Javascript WhatsApp bot powered by Bandaheali",
+  "logo": "https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg",
+  "keywords": ["EDITH-MD", "WhatsApp Bot", "Bandaheali"],
   "success_url": "/",
-
-    "stack": "container",
+  "stack": "container",
   "env": {
     "SESSION_ID": {
-      "description": "Put the session-id here.",
+      "description": "Put your Baileys session-id here (Base64).",
       "required": true,
       "value": ""
-    },  
-    
-    "STICKER_NAME": {
-      "description": "type your sticker pack name.",
-      "required": false,
-      "value": "SHABAN-MD︎"
     },
-    
+    "STICKER_NAME": {
+      "description": "Type your sticker pack name.",
+      "required": false,
+      "value": "EDITH-MD"
+    },
     "OWNER_NAME": {
       "description": "Type Bot Owner Name.",
       "required": false,
-      "value": "MR-SHABAN"
-}, 
+      "value": "Bandaheali"
+    },
     "OWNER_NUMBER": {
-      "description": "put the owner number for bot.",
+      "description": "Put the owner number for bot.",
       "required": false,
-      "value": "923043788282"
-
-    }, 
-    
+      "value": "923253617422"
+    },
     "MENU_IMAGE_URL": {
-      "description": "add url for mention reply and menu if want.",
+      "description": "Add image URL for menu and mention replies.",
       "required": true,
-      "value": "https://i.ibb.co/j9G5tmNM/shaban-md.jpg"
-    }, 
-      
+      "value": "https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg"
+    },
     "PREFIX": {
-      "description": "paste your bot prefix note! Don't apply null prefix.",
+      "description": "Paste your bot prefix. Avoid null prefix.",
       "required": false,
       "value": "."
     },
-    
     "MODE": {
-      "description": "select your bot work type public-private-inbox-group.",
+      "description": "Bot work mode: public / private / inbox / group.",
       "required": false,
       "value": "public"
-      
     },
-    
-    
     "ALWAYS_ONLINE": {
-      "description": "Make it true if want always online.",
+      "description": "Set true if you want always online mode.",
       "required": true,
-      "value": "false"  
-    },   
-  
+      "value": "false"
+    },
     "AUTO_VOICE": {
-      "description": "Make it true if want automatic voice reply .",
+      "description": "Set true for automatic voice replies.",
       "required": true,
       "value": "false"
-    }, 
-
+    },
     "AUTO_REPLY": {
-      "description": "Make it true if you want automatic reply.",
+      "description": "Set true for automatic message replies.",
       "required": true,
       "value": "false"
-    }, 
-
+    },
     "AUTO_STICKER": {
-      "description": "Make it true if you want automatic sticker.",
+      "description": "Set true for automatic sticker replies.",
       "required": true,
       "value": "false"
-    }, 
-
-
+    },
     "AUTO_STATUS_SEEN": {
-      "description": "Make it true for automatic status seen.",
+      "description": "Set true to auto-view statuses.",
       "required": true,
       "value": "true"
-    }, 
-
+    },
     "AUTO_STATUS_REACT": {
-      "description": "make it true for automatic status reaction or like.",
+      "description": "Set true to auto-react to status.",
       "required": true,
       "value": "true"
-    }, 
-
+    },
     "AUTO_STATUS_REPLY": {
-      "description": "Make it true for auto reply msg on status seen.",
+      "description": "Set true for automatic replies to status.",
       "required": true,
       "value": "false"
-    }, 
-
+    },
     "AUTO_STATUS_MSG": {
-      "description": "Type custom message on status reply",
+      "description": "Message to send on status auto-reply.",
       "required": true,
-      "value": "*SᴇᴇN YᴏᴜʀE SᴛᴀᴛᴜS JᴜsT NᴏW Sʜᴀʙᴀɴ-Mᴅ 𓅓*"
-   
-     }, 
-
+      "value": "*Sᴇᴇɴ Yᴏᴜʀ Sᴛᴀᴛᴜs Jᴜsᴛ Nᴏᴡ - EDITH-MD 🤖*"
+    },
     "BOT_NAME": {
-      "description": "Type here the bot name.",
+      "description": "Type the bot name here.",
       "required": false,
-      "value": "SHABAN-MD V5"
-
-     },
-     
+      "value": "EDITH-MD"
+    },
     "DELETE_LINK": {
-      "description": "Make it true if you want bot auto remove group link.",
+      "description": "Set true to delete group links automatically.",
       "required": true,
       "value": "false"
-    }, 
-    
+    },
     "ANTI_LINK": {
-      "description": "Make it true if you want bot auto kick member remove group link.",
+      "description": "Set true to remove members posting group links.",
       "required": true,
       "value": "false"
     },
-    
     "ADMIN_EVENTS": {
-      "description": "make it true if want know who promote or demote a member .",
+      "description": "Set true to notify when admins promote/demote.",
       "required": true,
       "value": "false"
     },
-
     "WELCOME": {
-      "description": "make it true if want goodbye and welcome message in groups.",
+      "description": "Set true to enable welcome/goodbye messages.",
       "required": true,
       "value": "false"
     },
-     
     "ANTI_CALL": {
-      "description": "Make it true if you want bot auto call rejected.",
+      "description": "Set true to auto-reject calls.",
       "required": true,
       "value": "false"
-      
-    }, 
-    
+    },
     "ANTI_BAD_WORD": {
-      "description": "Make it true if you want bot auto delete bad words.",
+      "description": "Set true to auto-delete bad words.",
       "required": true,
       "value": "false"
-    }, 
-    
+    },
     "AUTO_RECORDING": {
-      "description": "Make it true if you want auto recoding.",
+      "description": "Set true to enable auto-recording presence.",
       "required": true,
       "value": "false"
     },
-
     "AUTO_TYPING": {
-      "description": "Make it true if you want auto typing.",
+      "description": "Set true to enable auto-typing presence.",
       "required": true,
       "value": "false"
     },
-
     "AUTO_REACT": {
-      "description": "Make it true if you want react on every message.",
+      "description": "Set true to react to every message.",
       "required": true,
       "value": "false"
     },
-    
     "CUSTOM_REACT": {
-      "description": "Make it true if you want custom reactions.",
+      "description": "Set true to enable custom emoji reactions.",
       "required": true,
       "value": "false"
-      
-    }, 
-    
+    },
     "CUSTOM_REACT_EMOJIS": {
-      "description": "put here custom react react emojis.",
+      "description": "Custom emojis to use in reactions.",
       "required": false,
       "value": "💝,💖,💗,❤️‍🩹,❤️,🧡,💛,💚,💙,💜,🤎,🖤,🤍"
-    }, 
-    
+    },
     "ANTI_DEL_PATH": {
-      "description": "change it to -same- if you want to resend deleted message in same chat othwise inbox",
+      "description": "Use 'same' to resend deleted msg in same chat, otherwise 'inbox'.",
       "required": true,
       "value": "inbox"
     },
-
     "ANTI_DELETE": {
-      "description": "set true for show deleted messages.",
+      "description": "Set true to show deleted messages.",
       "required": true,
-      "value": "false"  
+      "value": "false"
     },
-
     "READ_MESSAGE": {
-      "description": "Make it true if you want bot read your all sms just now.",
+      "description": "Set true to mark all messages as read.",
       "required": true,
       "value": "false"
     }
-
-},
-
-     "buildpacks": [
-        {
-            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
-        }
-     ],
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
+    }
+  ],
   "stack": "heroku-24"
-}
-  
+    }
