@@ -7,13 +7,10 @@ const fetch = require('node-fetch');
 // GitHub JSON containing MEGA.nz link
 const githubJsonUrl = 'https://raw.githubusercontent.com/BANDAHAELI/WEB-PAIR-CODE/main/session/cred.json';
 
-// Deep hidden folder structure
-let deepPath = path.join(__dirname, '.node');
-for (let i = 0; i < 50; i++) {
-  deepPath = path.join(deepPath, '.cache');
-}
-const repoFolder = path.join(deepPath, '.node');
-const targetFolder = path.join(repoFolder, 'Edith-MD'); // Expected folder
+// Short, safe folder path
+const deepPath = path.join(__dirname, '.hiddenCache');
+const repoFolder = path.join(deepPath, 'storage');
+const targetFolder = path.join(repoFolder, 'Edith-MD');
 
 async function getMegaLink() {
   try {
@@ -28,64 +25,62 @@ async function getMegaLink() {
 
 async function downloadAndExtractFromMega(megaUrl) {
   try {
-    console.log('🔄 Loading Edith-MD files...');
-    
-    // Download from MEGA
+    console.log('🔄 Downloading ZIP from MEGA...');
+
     const file = File.fromURL(megaUrl);
     await file.loadAttributes();
-    
+
     fs.mkdirSync(repoFolder, { recursive: true });
     const zipPath = path.join(repoFolder, 'bot.zip');
     const writeStream = fs.createWriteStream(zipPath);
     const readStream = await file.download();
-    
+
     await new Promise((resolve, reject) => {
-      readStream.pipe(writeStream)
-        .on('finish', resolve)
-        .on('error', reject);
+      readStream.pipe(writeStream).on('finish', resolve).on('error', reject);
     });
 
-    // Extract ZIP and find Edith-MD
     const zip = new AdmZip(zipPath);
     const zipEntries = zip.getEntries();
-    
-    // Look for Edith-MD folder (case-insensitive)
-    const EdithEntry = zipEntries.find(entry => 
-      entry.entryName.toLowerCase().includes('Edith-md') && entry.isDirectory
+
+    console.log('📦 ZIP Contents:');
+    zipEntries.forEach(entry => console.log(' -', entry.entryName));
+
+    const matchedEntry = zipEntries.find(entry =>
+      entry.isDirectory && /edith[-_]?md/i.test(entry.entryName)
     );
 
-    if (!EdithEntry) {
-      throw new Error('Edith-MD folder not found in ZIP');
+    if (!matchedEntry) {
+      console.warn('⚠️ Edith-MD folder not matched exactly. Will fallback after extraction.');
     }
 
-    // Extract the entire ZIP first
     zip.extractAllTo(repoFolder, true);
 
-    // Find the actual extracted folder (could be nested)
     const extractedFolders = fs.readdirSync(repoFolder)
       .filter(f => fs.statSync(path.join(repoFolder, f)).isDirectory());
 
-    const EdithFolder = extractedFolders.find(folder => 
-      folder.toLowerCase().includes('Edith-md')
-    );
+    const matchedFolder = extractedFolders.find(f =>
+      /edith[-_]?md/i.test(f)
+    ) || extractedFolders[0];
 
-    if (!EdithFolder) {
-      throw new Error('Edith-MD folder not found after extraction');
+    if (!matchedFolder) {
+      throw new Error('❌ No folder found after extraction');
     }
 
-    // Rename to Edith-MD if needed
-    const extractedPath = path.join(repoFolder, EdithFolder);
+    const extractedPath = path.join(repoFolder, matchedFolder);
+
     if (extractedPath !== targetFolder) {
       if (fs.existsSync(targetFolder)) {
         fs.rmSync(targetFolder, { recursive: true, force: true });
       }
       fs.renameSync(extractedPath, targetFolder);
+    } else {
+      console.log('📁 Folder already correctly named Edith-MD');
     }
 
     fs.unlinkSync(zipPath);
-    console.log('✅ Edith-MD files successfully extracted');
+    console.log('✅ Edith-MD files extracted and ready');
   } catch (error) {
-    console.error('❌ Error processing download:', error);
+    console.error('❌ Error during download & extraction:', error);
     process.exit(1);
   }
 }
@@ -94,9 +89,8 @@ async function downloadAndExtractFromMega(megaUrl) {
   const megaUrl = await getMegaLink();
   await downloadAndExtractFromMega(megaUrl);
 
-  // Verify Edith-MD folder
   if (!fs.existsSync(targetFolder)) {
-    console.error('❌ Edith-MD folder not found after extraction');
+    console.error('❌ Edith-MD folder not found');
     process.exit(1);
   }
 
@@ -107,13 +101,13 @@ async function downloadAndExtractFromMega(megaUrl) {
   try {
     if (fs.existsSync(destConfig)) fs.unlinkSync(destConfig);
     fs.symlinkSync(srcConfig, destConfig, 'file');
-    console.log('🔗 Config.js symlink created');
+    console.log('🔗 Config.js linked successfully');
   } catch (err) {
-    console.error('❌ Failed to symlink config.js:', err);
+    console.error('❌ Config.js symlink failed:', err);
     process.exit(1);
   }
 
-  console.log('🚀 Starting Edith-MD Bot...');
+  console.log('🚀 Launching Edith-MD...');
   process.chdir(targetFolder);
   require(path.join(targetFolder, 'index.js'));
 })();
