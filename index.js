@@ -369,7 +369,12 @@ conn.ev.on('messages.upsert', async (msg) => {
   }
     if(mek.message.viewOnceMessageV2)
     mek.message = (getContentType(mek.message) === 'ephemeralMessage') ? mek.message.ephemeralMessage.message : mek.message
-    if (
+   if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_SEEN === "true") {
+      await conn.readMessages([mek.key])
+      console.log(`Marked status from ${mek.key.participant} as seen`)
+   }
+	  
+	  if (
   mek.key &&
   mek.key.remoteJid === 'status@broadcast' &&
   config.AUTO_STATUS_REACT === "true"
