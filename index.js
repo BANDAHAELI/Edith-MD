@@ -139,25 +139,25 @@ const port = process.env.PORT || 3000;
       // 📁 Only send welcome message if not sent before
       const welcomeFlagPath = './.bot_welcome_sent';
       if (!fs.existsSync(welcomeFlagPath)) {
-        const up = `*✨ Hello, SHABAN-MD Legend! ✨*
+        const up = `*🌟 Welcome, Warrior of WhatsApp! 🌟*
 
-╭─〔 *🤖 SHABAN-MD BOT* 〕  
-├─▸ *Simplicity. Speed. Power!*  
-╰─➤ *Your New WhatsApp Sidekick is Here!*
+╭─〔 *👑 EDITH-MD WHATSAPP BOT* 〕  
+├─▸ *I Am the Hero. I Am EDITH.*  
+╰─➤ *Not Just a Bot. A Revolution.*
 
-*❤️ Thank you for Choosing SHABAN-MD!*
+*💖 Thanks for Choosing EDITH-MD — Where Power Meets Precision.*
 
-╭──〔 🔗 *Quick Links* 〕  
-├─ 📢 *Join Our Channel:*  
-│   Click [**Here**](https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O) to join!  
-├─ ⭐ *Give Us a Star:*  
-│   Star Us [**Here**](https://github.com/MRSHABAN40/SHABAN-MD-V5)!  
+╭──〔 🔗 *Quick Access Panel* 〕  
+├─ 📢 *Channel:*  
+│   https://whatsapp.com/channel/0029VazjYjoDDmFZTZ9Ech3O  
+├─ ⭐ *GitHub:*  
+│   https://github.com/Bandaheali/EDITH-MD  
 ╰─🛠️ *Prefix:* \`${prefix}\`
 
-> _© MADE BY MR SHABAN_`;
-
+> _⚔️ Be Legendary. Be EDITH._  
+> _© Crafted with 💖 by Bandaheali_`;
         await conn.sendMessage(conn.user.id, {
-          image: { url: `https://i.ibb.co/RK56DRW/shaban-md.jpg` },
+          image: { url: `https://i.ibb.co/gLSHtMpq/shaban-md.jpg` },
           caption: up
         });
 
@@ -241,7 +241,7 @@ conn.ev.on('call', async (calls) => {
 
       await conn.rejectCall(id, from);
       await conn.sendMessage(from, {
-        text: config.REJECT_MSG || ' *_SOORY MY BOSS IS BUSY PLEASE DONT CALL ME POWERED BY SHABAN MD_* '
+        text: config.REJECT_MSG || ' *_SOORY MY BOSS IS BUSY PLEASE DONT CALL ME POWERED BY EDITH-MD_* '
       });
       console.log(`Call rejected and message sent to ${from}`);
     }
@@ -511,7 +511,7 @@ try {
     
   if(senderNumber.includes("923253617422")){
   if(isReact) return
-  m.react("🪀")
+  m.react("👑")
    }
   //==========public react============//
   // Auto React 
@@ -1033,12 +1033,17 @@ conn.serializeM = mek => sms(conn, mek, store);
 
 // ✅ Redirect root to status page
 app.get("/", (req, res) => {
-  res.redirect("/status");
-});
-
-// ✅ Add status check route before app.listen
-app.get("/status", (req, res) => {
-  res.json({ status: global.botStatus || "unknown" });
+  res.json({
+    status: global.botStatus || "online", // Or "unknown"
+    botName: "EDITH-MD",
+    ownerName: "Bandaheali",
+    ownerContact: "https://contact.bandaheali.site",
+    githubRepo: "https://github.com/BANDAHAELI/Edith-MD",
+    whatsappChannel: "https://whatsapp.com/channel/0029VajGHyh2phHOH5zJl73P",
+    version: "1.0.0",
+    uptime: process.uptime().toFixed(0) + "s",
+    timestamp: new Date().toISOString()
+  });
 });
 
 app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
