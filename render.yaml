@@ -1,0 +1,69 @@
+services:
+  - type: web
+    name: EDITH-MD
+    runtime: node
+    repo: https://github.com/BANDAHAELI/Edith-MD
+    branch: main
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: SESSION_ID
+        sync: false
+      - key: STICKER_NAME
+        value: EDITH-MD
+      - key: OWNER_NAME
+        value: Bandaheali
+      - key: OWNER_NUMBER
+        value: 923253617422
+      - key: MENU_IMAGE_URL
+        value: https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg
+      - key: PREFIX
+        value: "."
+      - key: MODE
+        value: public
+      - key: ALWAYS_ONLINE
+        value: "false"
+      - key: AUTO_VOICE
+        value: "false"
+      - key: AUTO_REPLY
+        value: "false"
+      - key: AUTO_STICKER
+        value: "false"
+      - key: AUTO_STATUS_SEEN
+        value: "true"
+      - key: AUTO_STATUS_REACT
+        value: "true"
+      - key: AUTO_STATUS_REPLY
+        value: "false"
+      - key: AUTO_STATUS_MSG
+        value: "*Sᴇᴇɴ Yᴏᴜʀ Sᴛᴀᴛᴜs Jᴜsᴛ Nᴏᴡ - EDITH-MD 🤖*"
+      - key: BOT_NAME
+        value: EDITH-MD
+      - key: DELETE_LINK
+        value: "false"
+      - key: ANTI_LINK
+        value: "false"
+      - key: ADMIN_EVENTS
+        value: "false"
+      - key: WELCOME
+        value: "false"
+      - key: ANTI_CALL
+        value: "false"
+      - key: ANTI_BAD_WORD
+        value: "false"
+      - key: AUTO_RECORDING
+        value: "false"
+      - key: AUTO_TYPING
+        value: "false"
+      - key: AUTO_REACT
+        value: "false"
+      - key: CUSTOM_REACT
+        value: "false"
+      - key: CUSTOM_REACT_EMOJIS
+        value: 💝,💖,💗,❤️‍🩹,❤️,🧡,💛,💚,💙,💜,🤎,🖤,🤍
+      - key: ANTI_DEL_PATH
+        value: inbox
+      - key: ANTI_DELETE
+        value: "false"
+      - key: READ_MESSAGE
+        value: "false"
