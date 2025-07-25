@@ -71,7 +71,7 @@ ${menu.search || '┃ ❌ No commands found.'}╰──────────�
             from,  
             {  
                 image: { url: config.MENU_IMAGE_URL },  
-                caption: dec,  
+                caption: madeMenu,  
                 contextInfo: {  
                     mentionedJid: [m.sender],  
                     forwardingScore: 999,  
