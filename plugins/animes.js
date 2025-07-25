@@ -272,7 +272,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 cmd({
     pattern: "anime",
     desc: "anime the bot",
-    category: "main",
+    category: "anime",
     react: "⛱️",
     filename: __filename
 },
@@ -280,7 +280,7 @@ cmd({
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
 try{
 
-let dec = `> SHABAN-MD ANIME IMGS*`
+let dec = `> EDITH-MD ANIME IMGS*`
 await conn.sendMessage(from,{image:{url: `https://telegra.ph/file/b26f27aa5daaada031b90.jpg`},caption:dec},{quoted:mek});
 await conn.sendMessage(from,{image:{url: `https://telegra.ph/file/51b44e4b086667361061b.jpg`},caption:dec},{quoted:mek});
 await conn.sendMessage(from,{image:{url: `https://telegra.ph/file/7d165d73f914985542537.jpg`},caption:dec},{quoted:mek});
@@ -300,7 +300,7 @@ cmd({
     pattern: "anime1",
     desc: "Animal image.",
     react: "🧚‍♀️",
-    category: "other",
+    category: "anime",
     filename: __filename
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
@@ -326,7 +326,7 @@ cmd({
     pattern: "anime2",
     desc: "Animal image.",
     react: "🧚‍♀️",
-    category: "other",
+    category: "anime",
     filename: __filename
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
@@ -353,7 +353,7 @@ cmd({
     pattern: "anime3",
     desc: "Animal image.",
     react: "🧚‍♀️",
-    category: "other",
+    category: "anime",
     filename: __filename
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
@@ -380,7 +380,7 @@ cmd({
     pattern: "anime4",
     desc: "Animal image.",
     react: "🧚‍♀️",
-    category: "other",
+    category: "anime",
     filename: __filename
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
@@ -407,7 +407,7 @@ cmd({
     pattern: "anime5",
     desc: "Animal image.",
     react: "🧚‍♀️",
-    category: "other",
+    category: "anime",
     filename: __filename
 },
 async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
