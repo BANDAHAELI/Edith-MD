@@ -3,7 +3,7 @@ const { cmd, commands } = require('../command');
 const moment = require('moment');
 
 cmd({
-  pattern: "menu2",
+  pattern: "menu",
   react: "👾",
   desc: "Get stylish command list",
   category: "main",
@@ -40,7 +40,7 @@ cmd({
 │ ⚙️ *Mode:* ${config.MODE}
 │ 🔮 *Prefix:* ${config.PREFIX}
 │ 🧠 *Baileys:* Multi-Device
-│ 👑 *Owner:* ᴀʟɪ ɪɴxɪᴅᴇ
+│ 👑 *Owner:* Ｂａｎｄａｈｅａｌｉ
 │ 🧬 *Version:* v4.0.0
 ╰────────────────────╯
 
@@ -64,14 +64,27 @@ ${menu.convert || '┃ ❌ No commands found.'}╰──────────
 ╭──❏ *🔍 SEARCH CMDS* ❏──╮
 ${menu.search || '┃ ❌ No commands found.'}╰────────────────────╯
 
-🌟 *Powered by:* ᴀʟɪ ɪɴxɪᴅᴇ
-📡 *Channel:* ${config.WHATSAPP_CHANNEL || 'Not Provided'}
+🌟 *Powered by:* Ｂａｎｄａｈｅａｌｉ
 `;
 
-    await conn.sendMessage(from, {
-      image: { url: "https://i.ibb.co/gLSHtMpq/shaban-md.jpg" },
-      caption: madeMenu.trim()
-    }, { quoted: mek });
+    await conn.sendMessage(  
+            from,  
+            {  
+                image: { url: config.MENU_IMAGE_URL },  
+                caption: dec,  
+                contextInfo: {  
+                    mentionedJid: [m.sender],  
+                    forwardingScore: 999,  
+                    isForwarded: true,  
+                    forwardedNewsletterMessageInfo: {  
+                        newsletterJid: '120363315182578784@newsletter',  
+                        newsletterName: 'ᴇᴅɪᴛʜ ᴍᴅ',  
+                        serverMessageId: 143  
+                    }  
+                }  
+            },  
+            { quoted: mek }  
+        );  
 
   } catch (e) {
     console.log(e);
