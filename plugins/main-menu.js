@@ -17,6 +17,7 @@ cmd({
     const greeting = hour < 12 ? "🌅 Good Morning" : hour < 18 ? "☀️ Good Afternoon" : "🌙 Good Evening";
 
     let menu = {
+      ai: '',
       main: '',
       download: '',
       group: '',
@@ -46,6 +47,9 @@ cmd({
 
 ╔═『 🧩 *COMMAND MENU* 』═╗
 
+╭──❏ *🤖 Ai CMDS* ❏──╮
+${menu.ai || '┃ ❌ No commands found.'}╰────────────────────╯
+
 ╭──❏ *📥 DOWNLOAD CMDS* ❏──╮
 ${menu.download || '┃ ❌ No commands found.'}╰────────────────────╯
 
@@ -64,7 +68,7 @@ ${menu.convert || '┃ ❌ No commands found.'}╰──────────
 ╭──❏ *🔍 SEARCH CMDS* ❏──╮
 ${menu.search || '┃ ❌ No commands found.'}╰────────────────────╯
 
-🌟 *Powered by:* Ｂａｎｄａｈｅａｌｉ
+${config.DESCRIPTION}
 `;
 
     await conn.sendMessage(  
