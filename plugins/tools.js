@@ -1,39 +1,37 @@
-const cmd = require('../command');
-const { Buffer } = require('buffer');
-const axios = require('axios');
-const { v4: uuidv4 } = require('uuid');
-const qrcode = require('qrcode');
+const cmd = require("../command");
+const axios = require("axios");
+const { writeFileSync } = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 // 1. Base64 Encode
 cmd({
   pattern: "base64",
-  desc: "Encode text to base64",
+  desc: "Convert text to base64",
   category: "tools",
   use: "<text>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Please provide text to encode.");
-  const encoded = Buffer.from(text).toString('base64');
-  await m.React("🧬");
-  return m.reply(`✅ *Encoded:*\n\`\`\`${encoded}\`\`\``);
+  if (!text) return m.reply("❌ Provide text to encode.");
+  await m.React("🔐");
+  const encoded = Buffer.from(text).toString("base64");
+  m.reply(`🔐 Base64:\n\`\`\`${encoded}\`\`\``);
 });
 
 // 2. Base64 Decode
 cmd({
   pattern: "unbase64",
-  desc: "Decode base64 to normal text",
+  desc: "Decode base64 text",
   category: "tools",
   use: "<base64>",
   filename: __filename
 }, async (m, command, text) => {
   if (!text) return m.reply("❌ Provide base64 string to decode.");
+  await m.React("🔓");
   try {
-    const decoded = Buffer.from(text, 'base64').toString('utf-8');
-    await m.React("📤");
-    return m.reply(`✅ *Decoded:*\n\`\`\`${decoded}\`\`\``);
+    const decoded = Buffer.from(text, "base64").toString("utf-8");
+    m.reply(`🔓 Decoded:\n\`\`\`${decoded}\`\`\``);
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Invalid base64 string.");
+    m.reply("❌ Invalid base64 format.");
   }
 });
 
@@ -45,15 +43,13 @@ cmd({
   use: "<url>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Provide a valid URL.");
+  if (!text) return m.reply("❌ Provide a URL to shorten.");
+  await m.React("🔗");
   try {
-    const res = await axios.get(`https://api.shrtco.de/v2/shorten?url=${encodeURIComponent(text)}`);
-    const short = res.data.result.full_short_link;
-    await m.React("🔗");
-    return m.reply(`✅ *Shortened URL:*\n${short}`);
+    const res = await axios.get(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(text)}`);
+    m.reply(`🔗 Shortened URL:\n${res.data}`);
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Failed to shorten URL.");
+    m.reply("❌ Unable to shorten URL.");
   }
 });
 
@@ -65,27 +61,25 @@ cmd({
   use: "<expression>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Provide an expression.");
+  if (!text) return m.reply("❌ Provide a math expression.");
   try {
     const result = eval(text);
     await m.React("🧮");
-    return m.reply(`✅ *Result:*\n\`\`\`${result}\`\`\``);
+    m.reply(`🧮 Result: \`\`\`${result}\`\`\``);
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Invalid math expression.");
+    m.reply("❌ Invalid expression.");
   }
 });
 
 // 5. UUID Generator
 cmd({
   pattern: "uuid",
-  desc: "Generate random UUID",
+  desc: "Generate a UUID",
   category: "tools",
   filename: __filename
 }, async (m) => {
-  const id = uuidv4();
   await m.React("🆔");
-  return m.reply(`✅ *UUID v4:*\n\`\`\`${id}\`\`\``);
+  m.reply(`🆔 UUID: \`${uuidv4()}\``);
 });
 
 // 6. Reverse Text
@@ -97,11 +91,11 @@ cmd({
   filename: __filename
 }, async (m, command, text) => {
   if (!text) return m.reply("❌ Provide text to reverse.");
-  await m.React("🔁");
-  return m.reply(`✅ *Reversed:*\n\`\`\`${text.split("").reverse().join("")}\`\`\``);
+  await m.React("🔄");
+  m.reply(`🔁 Reversed:\n\`\`\`${text.split("").reverse().join("")}\`\`\``);
 });
 
-// 7. Binary Encode
+// 7. Text to Binary
 cmd({
   pattern: "binary",
   desc: "Convert text to binary",
@@ -110,12 +104,12 @@ cmd({
   filename: __filename
 }, async (m, command, text) => {
   if (!text) return m.reply("❌ Provide text to convert.");
-  const binary = text.split('').map(char => char.charCodeAt(0).toString(2)).join(' ');
-  await m.React("💾");
-  return m.reply(`✅ *Binary:*\n\`\`\`${binary}\`\`\``);
+  await m.React("0️⃣1️⃣");
+  const binary = text.split("").map(c => c.charCodeAt(0).toString(2)).join(" ");
+  m.reply(`0️⃣1️⃣ Binary:\n\`\`\`${binary}\`\`\``);
 });
 
-// 8. Binary Decode
+// 8. Binary to Text
 cmd({
   pattern: "unbinary",
   desc: "Convert binary to text",
@@ -123,84 +117,102 @@ cmd({
   use: "<binary>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Provide binary string.");
+  if (!text) return m.reply("❌ Provide binary string to decode.");
+  await m.React("🔁");
   try {
-    const ascii = text.split(' ').map(bin => String.fromCharCode(parseInt(bin, 2))).join('');
-    await m.React("📤");
-    return m.reply(`✅ *Decoded Text:*\n\`\`\`${ascii}\`\`\``);
+    const ascii = text.split(" ").map(b => String.fromCharCode(parseInt(b, 2))).join("");
+    m.reply(`🔤 Decoded:\n\`\`\`${ascii}\`\`\``);
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Invalid binary string.");
+    m.reply("❌ Invalid binary input.");
   }
 });
 
 // 9. QR Code Generator
 cmd({
   pattern: "qr",
-  desc: "Generate QR code",
+  desc: "Generate QR code from text",
   category: "tools",
-  use: "<text or URL>",
+  use: "<text>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Provide text or link.");
+  if (!text) return m.reply("❌ Provide text to convert.");
+  await m.React("📷");
   try {
-    const qrImage = await qrcode.toDataURL(text);
-    const buffer = Buffer.from(qrImage.split(',')[1], 'base64');
-    await m.React("📷");
-    return m.sendMessage(m.chat, { image: buffer, caption: "✅ *QR Code Generated*" }, { quoted: m });
+    const qr = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(text)}&size=300x300`;
+    m.sendMessage(m.jid, { image: { url: qr }, caption: "📷 Your QR Code" }, { quoted: m });
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Failed to generate QR.");
+    m.reply("❌ Failed to generate QR code.");
   }
 });
 
-// 10. Timestamp
+// 10. Timestamp Generator
 cmd({
   pattern: "timestamp",
-  desc: "Show current timestamp and date",
+  desc: "Get current timestamp",
   category: "tools",
   filename: __filename
 }, async (m) => {
+  await m.React("⏰");
   const now = new Date();
-  const date = now.toISOString().split("T")[0];
-  const time = now.toTimeString().split(" ")[0];
-  const timestamp = now.getTime();
-  await m.React("⏱️");
-  return m.reply(`📅 *Date:* ${date}\n⏰ *Time:* ${time}\n🧭 *Timestamp:* ${timestamp}`);
+  const timestamp = `
+📅 Date: ${now.toLocaleDateString()}
+⏰ Time: ${now.toLocaleTimeString()}
+🕒 Timestamp: ${now.getTime()}
+  `.trim();
+  m.reply(timestamp);
 });
 
 // 11. IP Info
 cmd({
   pattern: "ipinfo",
-  desc: "Get information of IP address or domain",
+  desc: "Get IP or domain info",
   category: "tools",
-  use: "<ip or domain>",
+  use: "<ip/domain>",
   filename: __filename
 }, async (m, command, text) => {
-  if (!text) return m.reply("❌ Provide an IP address or domain.");
+  if (!text) return m.reply("❌ Provide an IP or domain.");
+  await m.React("🌍");
   try {
-    const res = await axios.get(`https://ip-api.com/json/${text}`);
-    const data = res.data;
+    const res = await axios.get(`http://ip-api.com/json/${text}`);
+    const d = res.data;
+    if (d.status !== "success") throw new Error();
+    m.reply(`🌐 *IP Info for:* \`${text}\`
 
-    if (data.status !== "success") throw new Error("Invalid IP or domain.");
-
-    const reply = `
-🌐 *IP Info for:* \`${text}\`
-
-- 📍 *Country:* ${data.country} (${data.countryCode})
-- 🏙️ *Region:* ${data.regionName}
-- 🏡 *City:* ${data.city}
-- 🛰️ *ISP:* ${data.isp}
-- 📡 *Org:* ${data.org}
-- 🌎 *Timezone:* ${data.timezone}
-- 🔢 *IP Address:* ${data.query}
-- 📌 *Coordinates:* ${data.lat}, ${data.lon}
-    `.trim();
-
-    await m.React("📍");
-    return m.reply(reply);
+- 🌎 Country: ${d.country}
+- 📍 Region: ${d.regionName}
+- 🏙️ City: ${d.city}
+- 🌐 ISP: ${d.isp}
+- 🛰️ Org: ${d.org}
+- ⏰ Timezone: ${d.timezone}
+- 🔢 IP: ${d.query}
+- 📌 Location: ${d.lat},${d.lon}`);
   } catch {
-    await m.React("❌");
-    return m.reply("❌ Unable to fetch IP info. Try a valid IP or domain.");
+    m.reply("❌ Invalid IP or domain.");
+  }
+});
+
+// 12. NPM Package Info
+cmd({
+  pattern: "npm",
+  desc: "Search NPM package",
+  category: "tools",
+  use: "<package name>",
+  filename: __filename
+}, async (m, command, text) => {
+  if (!text) return m.reply("❌ Provide a package name.");
+  await m.React("📦");
+  try {
+    const res = await axios.get(`https://api.npms.io/v2/package/${text}`);
+    const d = res.data;
+    m.reply(`📦 *NPM Package Info*
+
+- 🔤 Name: ${d.collected.metadata.name}
+- 🧾 Version: ${d.collected.metadata.version}
+- 🧑‍💻 Author: ${d.collected.metadata.author?.name || "N/A"}
+- 🗓️ Published: ${d.collected.metadata.date}
+- 📄 Description: ${d.collected.metadata.description}
+- 🔗 Link: ${d.collected.metadata.links.npm}`);
+  } catch {
+    m.reply("❌ Package not found.");
   }
 });
