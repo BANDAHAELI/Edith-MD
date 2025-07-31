@@ -157,7 +157,7 @@ const port = process.env.PORT || 3000;
 > _⚔️ Be Legendary. Be EDITH._  
 > _© Crafted with 💖 by Bandaheali_`;
         await conn.sendMessage(conn.user.id, {
-          image: { url: `https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg` },
+          image: { url: `${config.START_IMG}`|| `https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg` },
           caption: up
         });
 
