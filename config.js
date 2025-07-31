@@ -7,7 +7,7 @@ function convertToBool(text, fault = 'true') {
 
 module.exports = {
   SESSION_ID: process.env.SESSION_ID || "",
-  START_ING: process.env.START_IMG || "",
+  START_ING: process.env.START_IMG || "https://cdn.inprnt.com/thumbs/5d/0b/5d0b7faa113233d7c2a49cd8dbb80ea5@2x.jpg",
   AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
   AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "false",
   AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "true",
