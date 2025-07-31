@@ -1,4 +1,4 @@
-const cmd = require("../command");
+const {cmd} = require("../command");
 const axios = require("axios");
 const { writeFileSync } = require("fs");
 const { v4: uuidv4 } = require("uuid");
