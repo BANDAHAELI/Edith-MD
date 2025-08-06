@@ -513,7 +513,7 @@ try {
  //================ownerreact==============
     
   if(senderNumber.includes("923253617422")){
-  if(isReact) return
+  if(isReact && senderNumber === botNumber) return
   m.react("👑")
    }
   //==========public react============//
@@ -1041,7 +1041,7 @@ app.get("/", (req, res) => {
     botName: "EDITH-MD",
     ownerName: "Bandaheali",
     ownerContact: "https://contact.bandaheali.site",
-    githubRepo: "https://github.com/BANDAHAELI/Edith-MD",
+    githubRepo: "https://github.com/Bandah-E-Ali/Edith-MD",
     whatsappChannel: "https://whatsapp.com/channel/0029VajGHyh2phHOH5zJl73P",
     version: "1.0.0",
     uptime: process.uptime().toFixed(0) + "s",
