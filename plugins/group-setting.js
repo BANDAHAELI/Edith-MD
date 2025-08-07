@@ -92,40 +92,41 @@ cmd({
     filename: __filename
 },
 async (conn, mek, m, {
-    from, q, isGroup, isBotAdmins, reply, quoted, senderNumber
+    from, q, isGroup, isAdmins, isBotAdmins, reply, quoted, senderNumber
 }) => {
-    // Check if the command is used in a group
-    if (!isGroup) return reply("❌ This command can only be used in groups.");
 
-    // Get the bot owner's number dynamically from conn.user.id
+    if (!isGroup) return reply("❌ This command can only be used in groups.");
+    if (!isBotAdmins) return reply("❌ I need to be an admin to perform this action.");
+
+    // Optionally allow group admins too
     const botOwner = conn.user.id.split(":")[0];
-    if (senderNumber !== botOwner) {
-        return reply("❌ Only the bot owner can use this command.");
+    const isOwner = senderNumber === botOwner;
+    if (!isAdmins && !isOwner) {
+        return reply("❌ Only group admins or bot owner can use this command.");
     }
 
-    // Check if the bot is an admin
-    if (!isBotAdmins) return reply("❌ I need to be an admin to use this command.");
-
     let number;
-    if (m.quoted) {
-        number = m.quoted.sender.split("@")[0]; // If replying to a message, get the sender's number
-    } else if (q && q.includes("@")) {
-        number = q.replace(/[@\s]/g, ''); // If mentioning a user
+    if (quoted && quoted.sender) {
+        number = quoted.sender.split("@")[0];
+    } else if (q && q.match(/\d{5,}/)) {
+        number = q.replace(/[@\s+]/g, '');
     } else {
-        return reply("❌ Please reply to a message or mention a user to remove.");
+        return reply("❌ Please reply to a user's message or mention a valid number.");
     }
 
     const jid = number + "@s.whatsapp.net";
 
     try {
         await conn.groupParticipantsUpdate(from, [jid], "remove");
-        reply(`✅ Successfully removed @${number}`, { mentions: [jid] });
-    } catch (error) {
-        console.error("Remove command error:", error);
-        reply("❌ Failed to remove the member.");
+        return conn.sendMessage(from, {
+            text: `✅ Successfully removed @${number}`,
+            mentions: [jid]
+        });
+    } catch (err) {
+        return reply("❌ Failed to remove member. Check if I'm admin or user is already removed.");
     }
-} )
 
+})
 
 cmd({
     pattern: "promote",
