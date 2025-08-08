@@ -44,7 +44,7 @@ const {
   const Crypto = require('crypto')
   const path = require('path')
   const prefix = config.PREFIX
-  
+ const sImg = config.START_IMG; 
   const ownerNumber = ['923253617422']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
@@ -157,7 +157,7 @@ const port = process.env.PORT || 3000;
 > _⚔️ Be Legendary. Be EDITH._  
 > _© Crafted with 💖 by Bandaheali_`;
         await conn.sendMessage(conn.user.id, {
-          image: { url: `https://i.ibb.co/gLSHtMpq/shaban-md.jpg` },
+          image: { url: sImg },
           caption: up
         });
 
